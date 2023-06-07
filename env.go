@@ -9,7 +9,7 @@ const (
 )
 
 const (
-	dsn string = "postgresql://postgres:postgres@localhost/notifications"
+	dsn string = "postgresql://postgres:postgres@localhost/work3"
 	redisAddr string = "127.0.0.1:6379"
 	redisPsswd string = ""
 	redisDB int = 0

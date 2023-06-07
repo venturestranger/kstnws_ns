@@ -13,9 +13,9 @@ import (
 
 type Notification struct {
 	Id			int `json:"id" db:"id"`
+	IdUser		int `json:"id_user" db:"id_user"`
 	Status		int `json:"status" db:"status"`
 	Content		string `json:"content" db:"content"`
-	IdUser		int `json:"id_user" db:"id_user"`
 	Date		string `json:"date" db:"date"`
 }
 
@@ -35,11 +35,17 @@ func GetHandler(c *gin.Context) {
 		statement := "select * from notifications where "
 
 		if c.Query("id") != "" || c.Query("id_user") != "" {
+			var andFlag bool = false
+
 			if c.Query("id") != "" {
-				statement += " and id = " + c.Query("id")
+				statement += " id = " + c.Query("id")
+				andFlag = true
 			}
 			if c.Query("id_user") != "" {
-				statement += " and id_user = " + c.Query("id_user")
+				if andFlag {
+					statement += " and "
+				}
+				statement += " id_user = " + c.Query("id_user")
 			}
 		}
 		if c.Query("order_way_") != "" {
