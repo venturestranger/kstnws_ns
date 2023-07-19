@@ -32,18 +32,20 @@ func GetHandler(c *gin.Context) {
 		}
 		defer db.Close()
 
-		statement := "select * from notifications where "
+		statement := "select * from notifications "
 
 		if c.Query("id") != "" || c.Query("id_user") != "" {
 			var andFlag bool = false
 
 			if c.Query("id") != "" {
-				statement += " id = " + c.Query("id")
+				statement += " where id = " + c.Query("id")
 				andFlag = true
 			}
 			if c.Query("id_user") != "" {
 				if andFlag {
 					statement += " and "
+				} else {
+					statement += " where "
 				}
 				statement += " id_user = " + c.Query("id_user")
 			}
