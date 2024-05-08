@@ -6,7 +6,7 @@ After=network.target
 Type=simple
 User=debian
 WorkingDirectory=/home/debian/kstnws/kstnws_ns
-ExecStart=sh -c "/usr/local/go/bin/go run /home/debian/kstnws/kstnws_ns/*.go"
+ExecStart=sh -c "/home/debian/kstnws/kstnws_ns/ns"
 Restart=always
 StartLimitInterval=0
 
